@@ -38,10 +38,10 @@ navbarPage("spatMap", id="nav",
     )
   ),
 
-  # tabPanel("Document",
-  #          tags$iframe(
-  #            style="height:660px; width:70%; scrolling=yes; frameBorder='0'",
-  #            src="report.pdf#page=1&zoom=120")), 
+  tabPanel("Document",
+           tags$iframe(
+             style="height:1000px; width:75%; scrolling=yes; frameBorder='0'",
+             src="spatMap.pdf#page=1&zoom=120")),
 
 )
 
