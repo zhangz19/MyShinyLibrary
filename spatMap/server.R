@@ -55,9 +55,9 @@ function(input, output, session) {
     m <- leafletProxy("map") # %>% clearShapes() 
     m <- m %>%
       addPolygons(data=map1, stroke=FALSE, fillOpacity=0.5, smoothFactor=0.5, 
-                  layerId=~county, color=cols[y1])
+                  color=cols[y1])
     m <- m %>%
-      addCircles(data=foo, ~Longitude, ~Latitude, radius=radius, 
+      addCircles(data=foo, ~Longitude, ~Latitude, radius=radius, layerId=~county, 
                  stroke=FALSE, fillOpacity=0.1, fillColor=cols[y1]) %>%
       addLegend("topleft", pal=pal, opacity=1, values=colorData, title=colorBy,
                 layerId="colorLegend")

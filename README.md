@@ -3,7 +3,7 @@ An ensemble of shiny tools. More information can be found in ./www of each app.
 
 To run and test the shiny app, e.g., spatMap, in Rstudio simply do:   
 require(shiny)  
-runGitHub("spatMap", "zhangz19")  
+runGitHub("MyShinyLibrary", "zhangz19", subdir='spatMap')   
 
 Or download the folder, setwd to where the folder locates, do:  
 library(shiny)  
