@@ -55,9 +55,9 @@ function(input, output, session) {
     m <- leafletProxy("map") # %>% clearShapes() 
     m <- m %>%
       addPolygons(data=map1, stroke=FALSE, fillOpacity=0.5, smoothFactor=0.5, 
-                  color=cols[y1])
+                  layerId=~county, color=cols[y1])
     m <- m %>%
-      addCircles(data=foo, ~Longitude, ~Latitude, radius=radius, layerId=~county,
+      addCircles(data=foo, ~Longitude, ~Latitude, radius=radius, 
                  stroke=FALSE, fillOpacity=0.1, fillColor=cols[y1]) %>%
       addLegend("topleft", pal=pal, opacity=1, values=colorData, title=colorBy,
                 layerId="colorLegend")
@@ -71,8 +71,8 @@ function(input, output, session) {
     colorData <- foo[[colorBy]]
     cuts <- discretize(colorData, method="frequency", breaks=length(cols), onlycuts=T)
     y1 <- discretize(colorData, method='fixed', breaks=cuts)
-    inds <- which(foo$county == locId)
-    if(length(inds)>0){
+    inds <- which(foo$county == locId)[1]
+    if(length(inds)>0 && !is.na(inds)){
       selectedLoc <- foo[inds,]
       content <- as.character(tagList(
         tags$h4(paste0("Mean PRO: ", round(selectedLoc$mean_pro, 4))),
@@ -103,20 +103,18 @@ function(input, output, session) {
     event <- input$map_shape_click
     if(is.null(event))
       return()
-    isolate({
-      showZipcodePopup(event$id, event$lat, event$lng)
+    output$plot1 <- renderPlot({
+      inds <- which(dat$county == event$id)[1]
+      if(length(inds)>0){
+        par(las=1, mfrow=c(1, 1), mar=c(6,2,1,.5)+.2,mgp=c(1,.2,0), tck=-0.01, cex.axis=1, cex.lab=1, cex.main=1.1)
+        if(input$method=="Histogram" && !is.null(pro[[inds]])){
+          hist(pro[[inds]], main=dat$county[inds], xlab='Patient reported outcome')
+        }
+      }
     })
     
-    output$plot1 <- renderPlot({
-      inds <- which(dat$county == event$id)
-      if(length(inds)>0){
-        par(las=3, mfrow=c(1, 1), mar=c(6,2,1,.5)+.2,mgp=c(1,.2,0), tck=-0.01, cex.axis=1, cex.lab=1, cex.main=1.1)
-        
-        if(input$method=="Histogram"){
-          hist(pro[[inds]])
-        } else selectedLoc <- droplevels(mat[inds,])
-        
-      }
+    isolate({
+      showZipcodePopup(event$id, event$lat, event$lng)
     })
     
   })
