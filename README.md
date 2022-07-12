@@ -16,6 +16,8 @@ install.packages('rgeos')
 install.packages('leaflet')  
 install.packages('arules')  
 
-
+List of apps: 
+library(shiny) 
+runGitHub("MyShinyLibrary", "zhangz19", subdir='SimonOC', launch.browser=TRUE)
 
 
