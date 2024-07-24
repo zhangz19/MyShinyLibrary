@@ -1,0 +1,17 @@
+Gender,Type,From,Active,Remission,Hospitalized,Death
+Males,Endoscopy,Active,0.35,0.25,0.2,0.2
+Males,Endoscopy,Remission,0.24,0.29,0.18,0.29
+Males,Endoscopy,Hospitalized,0.17,0.27,0.11,0.45
+Males,Endoscopy,Death,0,0,0,1
+Males,Biomarkers,Active,0.45,0.35,0.1,0.1
+Males,Biomarkers,Remission,0.17,0.27,0.23,0.33
+Males,Biomarkers,Hospitalized,0.3,0.23,0.12,0.35
+Males,Biomarkers,Death,0,0,0,1
+Females,Endoscopy,Active,0.5,0.25,0.2,0.05
+Females,Endoscopy,Remission,0.12,0.5,0.11,0.27
+Females,Endoscopy,Hospitalized,0.1,0.1,0.4,0.4
+Females,Endoscopy,Death,0,0,0,1
+Females,Biomarkers,Active,0.7,0.15,0.1,0.05
+Females,Biomarkers,Remission,0.12,0.5,0.11,0.27
+Females,Biomarkers,Hospitalized,0.1,0.1,0.4,0.4
+Females,Biomarkers,Death,0,0,0,1
